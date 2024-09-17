@@ -1,0 +1,35 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+
+const app = express();
+
+app.use(express.json());
+app.use(cookieParser());
+dotenv.config({ path: './.env' });
+
+
+dotenv.config();
+
+
+const port = process.env.PORT || 3400;
+const url = process.env.MONGODB_URL;
+app.use(express.static('./public'));
+
+async function connectDB(url, connectionParams) {
+    await mongoose.connect(url, connectionParams);
+    console.log('Database Connected');
+}
+
+connectDB(url, {})
+    .then(() => {
+        app.listen(port, () => {
+            console.log(`Listening on port ${port}`);
+        });
+    })
+    .catch((err) => {
+        console.error('Connection Error', err);
+});
+
