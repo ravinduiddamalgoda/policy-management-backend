@@ -1,0 +1,38 @@
+const mongoose = require('mongoose');
+
+const userSchema = new mongoose.Schema({
+    fname: {
+        type: String,
+        required: true
+    },
+    lname: {
+        type: String,
+        required: true
+    },
+    username: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    employeeEmail : {
+        type: String,
+        required: true
+    },
+    role : {
+        type: String,
+        enum: ['admin', 'user'],
+        required: true
+    },
+    department : {
+        type: String,
+        enum: ['UI-UX Design Department','Brand Identity Department','Product Engineering Department','Web Development Department'],
+        required: true
+    }
+});
+
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
