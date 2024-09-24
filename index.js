@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 const app = express();
 
 app.use(express.json());
-app.use(cookieParser());
+//app.use(cookieParser());
 dotenv.config({ path: './.env' });
 
 
@@ -39,4 +39,5 @@ connectDB(url, {})
         console.error('Connection Error', err);
 });
 
-app.use('/api/quiz', require('./routes/quiz.route'));
+app.use('/api/quiz', require('./src/routes/quiz.route'));
+app.use('/api/policy', require('./src/routes/policy.route'));

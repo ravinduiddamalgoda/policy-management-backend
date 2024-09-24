@@ -20,6 +20,7 @@ const getPolicyById = async (req, res) => {
 }
 
 const createPolicy = async (req, res) => {
+    console.log("Post request received");
     try {
         const policy = await PolicyService.createPolicy(req.body.policyName, req.body.department, req.body.level, req.body.policyContent, req.body.policyLink, req.body.policyCreatedDate);
         res.status(201).json(policy);

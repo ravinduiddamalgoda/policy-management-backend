@@ -22,10 +22,12 @@ const getPolicyById = async (id) => {
 
 const createPolicy = async (policyName , department , level , policyContent , policyLink , policyCreatedDate) => {
     try {
-        const newPolicy = new Policy(policyName , department , level , policyContent , policyLink , policyCreatedDate);
+        const newPolicy = new Policy({policyName , department , level , policyContent , policyLink , policyCreatedDate});
         await newPolicy.save();
+        console.log(newPolicy);
         return newPolicy;
     } catch (error) {
+        console.log(error);
         throw new Error(error);
     }
 }
