@@ -14,6 +14,10 @@ const policySchema = new mongoose.Schema({
         required: true,
         enum: ['novice', 'intermediate', 'expert']
     },
+    policyDescription: {
+        type: String,
+        required: true
+    },
     policyContent : {
         type: String,
         required: true

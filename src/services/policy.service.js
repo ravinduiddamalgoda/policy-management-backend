@@ -18,13 +18,12 @@ const getPolicyById = async (id) => {
     catch (error) {
         throw new Error(error);
     }
-}   
+}
 
-const createPolicy = async (policyName , department , level , policyContent , policyLink , policyCreatedDate) => {
+const createPolicy = async (policyName, department, level, policyDescription, policyContent, policyLink, policyCreatedDate) => {
     try {
-        const newPolicy = new Policy({policyName , department , level , policyContent , policyLink , policyCreatedDate});
+        const newPolicy = new Policy({ policyName, department, level, policyDescription, policyContent, policyLink, policyCreatedDate });
         await newPolicy.save();
-        console.log(newPolicy);
         return newPolicy;
     } catch (error) {
         console.log(error);
@@ -32,9 +31,24 @@ const createPolicy = async (policyName , department , level , policyContent , po
     }
 }
 
-const updatePolicy = async (id , policyName , department , level , policyContent , policyLink ) => {
+const updatePolicy = async (id, policyName, department, level, policyDescription, policyContent, policyLink) => {
     try {
-        const updatedPolicy = await Policy.findByIdAndUpdate(id , policyName , department , level , policyContent , policyLink );
+        const updateFields = {};
+
+        if (policyName) updateFields.policyName = policyName;
+        if (department) updateFields.department = department;
+        if (level) updateFields.level = level;
+        if (policyDescription) updateFields.policyDescription = policyDescription;
+        if (policyContent) updateFields.policyContent = policyContent;
+        if (policyLink) updateFields.policyLink = policyLink;
+
+        console.log(updateFields);
+
+        const updatedPolicy = await Policy.findByIdAndUpdate(
+            id,
+            updateFields,
+            { new: true }
+        );
         return updatedPolicy;
     } catch (error) {
         throw new Error(error);

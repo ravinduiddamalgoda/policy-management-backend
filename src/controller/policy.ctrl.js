@@ -20,9 +20,8 @@ const getPolicyById = async (req, res) => {
 }
 
 const createPolicy = async (req, res) => {
-    console.log("Post request received");
     try {
-        const policy = await PolicyService.createPolicy(req.body.policyName, req.body.department, req.body.level, req.body.policyContent, req.body.policyLink, req.body.policyCreatedDate);
+        const policy = await PolicyService.createPolicy(req.body.policyName, req.body.department, req.body.level, req.body.policyDescription, req.body.policyContent, req.body.policyLink, req.body.policyCreatedDate);
         res.status(201).json(policy);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -32,7 +31,7 @@ const createPolicy = async (req, res) => {
 
 const updatePolicy = async (req, res) => {
     try {
-        const policy = await PolicyService.updatePolicy(req.params.id, req.body.policyName, req.body.department, req.body.level, req.body.policyContent, req.body.policyLink);
+        const policy = await PolicyService.updatePolicy(req.params.id, req.body.policyName, req.body.department, req.body.level, req.body.policyDescription, req.body.policyContent, req.body.policyLink);
         res.status(200).json(policy);
     } catch (error) {
         res.status(500).json({ message: error.message });
