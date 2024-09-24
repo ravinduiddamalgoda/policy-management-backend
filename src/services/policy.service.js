@@ -32,7 +32,7 @@ const createPolicy = async (policyName , department , level , policyContent , po
 
 const updatePolicy = async (id , policyName , department , level , policyContent , policyLink ) => {
     try {
-        const updatedPolicy = await Policy.findByIdAndUpdate(id , policyName , department , level , policyContent , policyLink);
+        const updatedPolicy = await Policy.findByIdAndUpdate(id , policyName , department , level , policyContent , policyLink );
         return updatedPolicy;
     } catch (error) {
         throw new Error(error);

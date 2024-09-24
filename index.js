@@ -23,6 +23,12 @@ async function connectDB(url, connectionParams) {
     console.log('Database Connected');
 }
 
+app.use(cors());
+
+app.use(bodyParser.json());
+
+
+
 connectDB(url, {})
     .then(() => {
         app.listen(port, () => {
@@ -33,3 +39,4 @@ connectDB(url, {})
         console.error('Connection Error', err);
 });
 
+app.use('/api/quiz', require('./routes/quiz.route'));
