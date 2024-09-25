@@ -1,7 +1,7 @@
 const UserService = require('../services/user.service');
 
 const { generateOTP} = require('../utils/otp.util');
-const generatePassword = require('../utils/password.util');
+const generatePassword = require('../utils/generatePassword.util');
 
 const getUsers = async (req, res) => {
     try {

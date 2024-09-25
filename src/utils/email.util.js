@@ -7,7 +7,7 @@ const smtp = require("../configs/email.config");
 const send = async (receivers, subject, html, text) => {
     try {
         const info = await smtp.sendMail({
-          from: `"FitnessCartel" <${process.env.SMTP_USER}>`,
+          from: `"CodeZentra" <${process.env.SMTP_USER}>`,
           to: receivers.join(', '),
           subject: subject, 
           text: text, 
