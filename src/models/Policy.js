@@ -12,7 +12,7 @@ const policySchema = new mongoose.Schema({
     level: {
         type: String,
         required: true,
-        enum: ['novice', 'intermediate', 'expert']
+        enum: ['novice', 'intermediate', 'expert', 'Novice', 'Intermediate', 'Expert']
     },
     policyDescription: {
         type: String,
@@ -27,7 +27,7 @@ const policySchema = new mongoose.Schema({
         required: true
     },
     policyCreatedDate: {
-        type: Date,
+        type: String,
         required: true,
         default: Date.now
     },

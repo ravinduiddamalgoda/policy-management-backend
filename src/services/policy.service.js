@@ -31,7 +31,7 @@ const createPolicy = async (policyName, department, level, policyDescription, po
     }
 }
 
-const updatePolicy = async (id, policyName, department, level, policyDescription, policyContent, policyLink) => {
+const updatePolicy = async (id, policyName, department, level, policyDescription, policyContent, policyLink, policyCreatedDate) => {
     try {
         const updateFields = {};
 
@@ -41,6 +41,7 @@ const updatePolicy = async (id, policyName, department, level, policyDescription
         if (policyDescription) updateFields.policyDescription = policyDescription;
         if (policyContent) updateFields.policyContent = policyContent;
         if (policyLink) updateFields.policyLink = policyLink;
+        if (policyCreatedDate) updateFields.policyCreatedDate = policyCreatedDate;
 
         console.log(updateFields);
 
@@ -51,6 +52,7 @@ const updatePolicy = async (id, policyName, department, level, policyDescription
         );
         return updatedPolicy;
     } catch (error) {
+        console.error(error);
         throw new Error(error);
     }
 }
