@@ -26,6 +26,16 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['UI-UX Design Department','Brand Identity Department','Product Engineering Department','Web Development Department'],
         required: true
+    },
+    firstLogin : {
+        type: Boolean,
+        required: true,
+        default: true
+    },
+    quizCompleted : {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 

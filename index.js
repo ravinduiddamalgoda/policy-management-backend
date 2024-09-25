@@ -4,10 +4,6 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
-const email = require('./src/utils/email.util');
-
-email.send(['suneradrck@gmail.com'], 'Test Email', '<h1>Test Email</h1>', 'Test Email');
-
 const app = express();
 
 app.use(express.json());

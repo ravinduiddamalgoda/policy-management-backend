@@ -2,6 +2,7 @@ const UserService = require('../services/user.service');
 
 const { generateOTP} = require('../utils/otp.util');
 const generatePassword = require('../utils/generatePassword.util');
+const email = require('../configs/email.config');
 
 const getUsers = async (req, res) => {
     try {
@@ -24,7 +25,20 @@ const getUserById = async (req, res) => {
 
 const createUser = async (req, res) => {
     try {
-        const user = await UserService.createUser(req.body.policyName, req.body.department, req.body.level, req.body.policyDescription, req.body.policyContent, req.body.policyLink, req.body.policyCreatedDate);
+        const password = generatePassword();
+        const user = await UserService.createUser();
+
+        user.password = ""
+
+        if (user) {
+            const res = email.send([user.email], 
+                `<h2>Welcome to Policy Management System</h2>
+                <p>Your Temporary Password is : <strong> ${password} </strong><p>`,
+                `Welcome to Policy Management System. Your Temporary Password is : ${password}`
+            );
+        }
+       
+
         res.status(201).json(user);
     } catch (error) {
         res.status(500).json({ message: error.message });
