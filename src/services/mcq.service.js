@@ -9,6 +9,15 @@ const getMCQ = async () => {
     }
 }
 
+const getMCQByLevelAndDepartment = async (levels, departments) => {
+    try {
+        const mcq = await MCQ.find({level : { $in: levels}, department: { $in: departments}});
+        return mcq;
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 const getMCQById = async (id) => {
     try {
         const mcq = await MCQ.findById(id);
@@ -50,6 +59,7 @@ const deleteMCQ = async (id) => {
 module.exports = {
     getMCQ,
     getMCQById,
+    getMCQByLevelAndDepartment,
     createMCQ,
     updateMCQ,
     deleteMCQ

@@ -27,12 +27,13 @@ const createUser = async (req, res) => {
     try {
         const password = generatePassword();
         const data = req.body;
-        const user = await UserService.createUser(data.firstName, data.lastName, data.email, password, 'user', data.department);
+        const user = await UserService.createUser(data.firstName, data.lastName, data.email, password, 'user', data.department, data.level);
 
         user.password = ""
 
         if (user) {
             const res = email.send([user.email], 
+                `Welcome to Policy Management System`,
                 `<h2>Welcome to Policy Management System</h2>
                 <p>Your Temporary Password is : <strong> ${password} </strong><p>`,
                 `Welcome to Policy Management System. Your Temporary Password is : ${password}`
@@ -59,8 +60,25 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     try {
-        await UserService.deleteUser(req.params.id);
-        res.status(200).json({ message: 'Policy Deleted Successfully' });
+        let user = await UserService.deleteUser(req.params.id);
+
+        if(user){
+            email.send([res.email], 
+                `Account Deleted`,
+                `<h2>Your Account has been Deleted</h2>
+                <p>Your Account has been Deleted by the Administrator</p>
+                <p>Thank You for working with us</p>
+                <br/>
+                <small>Policy Management System</small>
+                <small>if there is any issue with this email, please contact the administrator</small>`,
+                `Your Account has been Deleted by the Administrator.
+                Thank You for working with us.
+
+                if there is any issue with this email, please contact the administrator`
+            );
+        }
+
+        res.status(200).json({ message: 'User Deleted Successfully' });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

@@ -2,7 +2,7 @@ const User = require('../models/User');
 
 const getUsers = async () => {
     try {
-        const users = await User.find({});
+        const users = await User.find({}, {password: 0});
         return users;
     } catch (error) {
         throw new Error(error);
@@ -16,11 +16,12 @@ const getUserById = async (id) => {
         return user;
     }
     catch (error) {
+        console.log(error);
         throw new Error(error);
     }
 }
 
-const createUser = async (firstName, lastName, email, password, role, department) => {
+const createUser = async (firstName, lastName, email, password, role, department, level) => {
     try {
         const newUser = new User({
             firstName,
@@ -28,7 +29,8 @@ const createUser = async (firstName, lastName, email, password, role, department
             email,
             password,
             role,
-            department
+            department,
+            level
         });
         await newUser.save();
         newUser.password = "";
