@@ -1,19 +1,19 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-    fname: {
+    firstName: {
         type: String,
         required: true
     },
-    lname: {
-        type: String,
-        required: true
-    },
-    password: {
+    lastName: {
         type: String,
         required: true
     },
     email : {
+        type: String,
+        required: true
+    },
+    password: {
         type: String,
         required: true
     },
@@ -36,6 +36,11 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+    otp : {
+        type: String,
+        required: true,
+        default: "-1"
     }
 });
 

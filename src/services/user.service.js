@@ -20,10 +20,18 @@ const getUserById = async (id) => {
     }
 }
 
-const createUser = async () => {
+const createUser = async (firstName, lastName, email, password, role, department) => {
     try {
-        const newUser = new User({});
+        const newUser = new User({
+            firstName,
+            lastName,
+            email,
+            password,
+            role,
+            department
+        });
         await newUser.save();
+        newUser.password = "";
         return newUser;
     } catch (error) {
         console.log(error);

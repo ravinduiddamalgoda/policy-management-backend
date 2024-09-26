@@ -2,7 +2,7 @@ const UserService = require('../services/user.service');
 
 const { generateOTP} = require('../utils/otp.util');
 const generatePassword = require('../utils/generatePassword.util');
-const email = require('../configs/email.config');
+const email = require('../utils/email.util');
 
 const getUsers = async (req, res) => {
     try {
@@ -26,7 +26,8 @@ const getUserById = async (req, res) => {
 const createUser = async (req, res) => {
     try {
         const password = generatePassword();
-        const user = await UserService.createUser();
+        const data = req.body;
+        const user = await UserService.createUser(data.firstName, data.lastName, data.email, password, 'user', data.department);
 
         user.password = ""
 
