@@ -46,7 +46,7 @@ const createUser = async (req, res) => {
             const res = email.send([user.email], 
                 `Welcome to Policy Management System`,
                 `<h2>Welcome to Policy Management System</h2>
-                <p>You need to try to login with any password you like and then system will send you a system generated password to this email address. You can sign into the system with that password.<p>`,
+                <p>You need to try to login to the Criativo Code Security Awareness and Training Application with any 8-character password you like and then system will send you a system generated password to this email address. You can sign into the system with that password.<p>`,
             );
         }
        
