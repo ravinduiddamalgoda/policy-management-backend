@@ -43,6 +43,6 @@ app.use('/api/user', require('./src/routes/user.route'));
 app.use('/api/mcq', require('./src/routes/mcq.route'));
 app.use('/api/quiz', require('./src/routes/quiz.route'));
 app.use('/api/policy', require('./src/routes/policy.route'));
-
+app.use('/api/quiz-history', require('./src/routes/user.quiz.route'));
 app.use('/api/department', require('./src/routes/department.route'));
 
