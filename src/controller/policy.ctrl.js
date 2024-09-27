@@ -21,7 +21,7 @@ const getPolicyById = async (req, res) => {
 
 const createPolicy = async (req, res) => {
     try {
-        const policy = await PolicyService.createPolicy(req.body.policyName, req.body.department, req.body.level, req.body.policyDescription, req.body.policyContent, req.body.policyLink, req.body.policyCreatedDate);
+        const policy = await PolicyService.createPolicy(req.body.policyName, req.body.department, req.body.level, req.body.policyDescription, req.body.policyContent, req.body.policyLink);
         res.status(201).json(policy);
     } catch (error) {
         res.status(500).json({ message: error.message });

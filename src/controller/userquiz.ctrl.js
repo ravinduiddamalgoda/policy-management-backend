@@ -1,4 +1,4 @@
-const UserQuizService = require('../service/user.quiz.service');
+const UserQuizService = require('../services/user.quiz.service');
 
 const getUserQuiz = async (req, res) => {
     try {
