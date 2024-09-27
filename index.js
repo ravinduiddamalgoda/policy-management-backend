@@ -45,4 +45,5 @@ app.use('/api/quiz', require('./src/routes/quiz.route'));
 app.use('/api/policy', require('./src/routes/policy.route'));
 app.use('/api/quiz-history', require('./src/routes/user.quiz.route'));
 app.use('/api/department', require('./src/routes/department.route'));
+app.use('/api/auth' , require('./src/routes/auth.route'));
 

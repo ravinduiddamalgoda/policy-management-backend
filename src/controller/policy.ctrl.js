@@ -48,11 +48,21 @@ const deletePolicy = async (req, res) => {
     }
 }
 
+const getPoliciesByDepartment = async (req, res) => {
+    try {
+        const policies = await PolicyService.getPoliciesByDepartment(req.params.department);
+        res.status(200).json(policies);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
 
 module.exports = {
     getPolicies,
     getPolicyById,
     createPolicy,
     updatePolicy,
-    deletePolicy
+    deletePolicy,
+    getPoliciesByDepartment
 }

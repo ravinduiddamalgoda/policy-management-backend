@@ -66,10 +66,21 @@ const deletePolicy = async (id) => {
     }
 }
 
+const getPoliciesByDepartment = async (department) => {
+    try {
+        const policies = await Policy.find({ department });
+        const AllDep = await Policy.find({department : "All"});
+        return policies.concat(AllDep);
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 module.exports = {
     getPolicies,
     getPolicyById,
     createPolicy,
     updatePolicy,
-    deletePolicy
+    deletePolicy,
+    getPoliciesByDepartment
 }
